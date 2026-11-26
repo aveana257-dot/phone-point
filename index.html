@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +15,6 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-
 html{scroll-behavior:smooth}
 
 body{
@@ -194,7 +192,7 @@ footer{
 
 footer strong{color:var(--gold)}
 
-/* PRODUCT DETAILS */
+/* PRODUCT DETAILS MODAL */
 
 .details-modal{
   display:none;
@@ -206,7 +204,10 @@ footer strong{color:var(--gold)}
   padding:30px 15px;
 }
 
+.details-modal.open{display:block}
+
 .details-content{
+  position:relative;
   max-width:750px;
   margin:30px auto;
   padding:25px;
@@ -215,6 +216,23 @@ footer strong{color:var(--gold)}
   border-radius:12px;
 }
 
+.details-close{
+  position:sticky;
+  top:0;
+  z-index:10;
+  display:block;
+  margin-left:auto;
+  background:#333;
+  color:white;
+  border:1px solid #666;
+  padding:10px 16px;
+  cursor:pointer;
+  border-radius:5px;
+  font-size:14px;
+}
+
+.details-close:hover{background:var(--gold);color:#111}
+
 .details-content img{
   width:100%;
   height:280px;
@@ -222,28 +240,52 @@ footer strong{color:var(--gold)}
   background:white;
   border-radius:8px;
   padding:10px;
+  margin-top:12px;
 }
 
 .details-content h2{
   color:var(--gold);
-  margin:18px 0;
+  margin:18px 0 8px;
 }
 
 .details-content p{
   color:#ccc;
-  line-height:2;
+  line-height:1.9;
+  margin-bottom:10px;
 }
 
-.details-content .gold-btn{margin-top:15px}
+.specs-title{
+  color:var(--gold);
+  font-weight:bold;
+  margin:16px 0 8px;
+}
 
-.details-close{
-  float:right;
-  background:#333;
-  color:white;
-  border:1px solid #666;
-  padding:8px 14px;
-  cursor:pointer;
-  border-radius:5px;
+.specs-list{
+  list-style:none;
+  border:1px solid #302719;
+  border-radius:8px;
+  overflow:hidden;
+}
+
+.specs-list li{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:11px 14px;
+  border-bottom:1px solid #2a2a2a;
+  color:#ddd;
+  font-size:14px;
+}
+
+.specs-list li:last-child{border-bottom:0}
+.specs-list li:nth-child(odd){background:#1b1b1b}
+.specs-list li span:first-child{color:var(--muted)}
+.specs-list li span:last-child{text-align:right}
+
+.note{
+  font-size:12px;
+  color:#888;
+  margin-top:12px;
 }
 
 .details-button{
@@ -263,6 +305,8 @@ footer strong{color:var(--gold)}
   .hero{padding:65px 7%}
   .section{padding:40px 5%}
   .details-content{padding:18px}
+  .specs-list li{flex-direction:column;gap:2px}
+  .specs-list li span:last-child{text-align:left}
 }
 </style>
 </head>
@@ -279,7 +323,7 @@ footer strong{color:var(--gold)}
     <a href="#contact">Contact</a>
   </nav>
 
-  <button class="gold-btn" onclick="toggleCart()">
+  <button class="gold-btn" type="button" onclick="toggleCart()">
     🛒 Cart (<span id="count">0</span>)
   </button>
 </header>
@@ -312,43 +356,14 @@ footer strong{color:var(--gold)}
   >
 
   <div class="filters">
-    <button class="filter active" onclick="setCategory('All',this)">All</button>
-    <button class="filter" onclick="setCategory('Samsung',this)">Samsung</button>
-    <button class="filter" onclick="setCategory('Apple',this)">Apple</button>
-    <button class="filter" onclick="setCategory('Infinix',this)">Infinix</button>
-    <button class="filter" onclick="setCategory('Accessories',this)">Accessories</button>
+    <button class="filter active" type="button" onclick="setCategory('All',this)">All</button>
+    <button class="filter" type="button" onclick="setCategory('Samsung',this)">Samsung</button>
+    <button class="filter" type="button" onclick="setCategory('Apple',this)">Apple</button>
+    <button class="filter" type="button" onclick="setCategory('Infinix',this)">Infinix</button>
+    <button class="filter" type="button" onclick="setCategory('Accessories',this)">Accessories</button>
   </div>
 
   <div class="products" id="productsGrid"></div>
-
-  <!-- PRODUCT DETAILS MODAL -->
-
-  <div class="details-modal" id="detailsModal" onclick="closeDetails()">
-
-    <div class="details-content" onclick="event.stopPropagation()">
-
-      <button class="details-close" onclick="closeDetails()">
-        ✕ Close
-      </button>
-
-      <div style="clear:both"></div>
-
-      <img id="detailsImage" src="" alt="Product">
-
-      <h2 id="detailsName"></h2>
-
-      <div class="price" id="detailsPrice"></div>
-
-      <p id="detailsCategory"></p>
-
-      <p id="detailsSpecs"></p>
-
-      <button class="gold-btn" id="detailsCartButton">
-        Add to Cart
-      </button>
-
-    </div>
-  </div>
 
 </section>
 
@@ -361,11 +376,11 @@ footer strong{color:var(--gold)}
 
   <br>
 
-  <button class="gold-btn" onclick="checkout()">
+  <button class="gold-btn" type="button" onclick="checkout()">
     Order on WhatsApp
   </button>
 
-  <button class="filter" onclick="toggleCart()">
+  <button class="filter" type="button" onclick="toggleCart()">
     Continue Shopping
   </button>
 </div>
@@ -397,6 +412,33 @@ footer strong{color:var(--gold)}
   <p>Demo Website © 2026</p>
 </footer>
 
+<!-- PRODUCT DETAILS MODAL (body level, section ke bahar) -->
+<div class="details-modal" id="detailsModal">
+  <div class="details-content" id="detailsContent">
+
+    <button class="details-close" id="detailsClose" type="button">✕ Close</button>
+
+    <img id="detailsImage" src="" alt="Product">
+
+    <h2 id="detailsName"></h2>
+    <div class="price" id="detailsPrice"></div>
+    <p id="detailsCategory"></p>
+    <p id="detailsDesc"></p>
+
+    <div class="specs-title">Specifications</div>
+    <ul class="specs-list" id="detailsSpecs"></ul>
+
+    <p class="note">
+      Note: Specifications model ke hisab se thori different ho sakti hain. Final details shop par confirm karein.
+    </p>
+
+    <button class="gold-btn" id="detailsCartButton" type="button" style="margin-top:15px">
+      Add to Cart
+    </button>
+
+  </div>
+</div>
+
 <script>
 
 const products = [
@@ -405,42 +447,94 @@ const products = [
     name:"Samsung Galaxy",
     category:"Samsung",
     price:45000,
-    image:"https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=500"
+    image:"https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=500",
+    description:"Samsung ka stylish aur powerful smartphone jo behtareen display, smooth performance aur shandar camera ke saath aata hai.",
+    specs:{
+      "Display":"6.5\" AMOLED, 120Hz",
+      "RAM / Storage":"8GB / 128GB",
+      "Camera":"50MP Triple Camera",
+      "Battery":"5000mAh, Fast Charging",
+      "Network":"4G / 5G",
+      "Warranty":"Shop warranty available"
+    }
   },
   {
     id:2,
     name:"Apple iPhone",
     category:"Apple",
     price:120000,
-    image:"https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500"
+    image:"https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500",
+    description:"Apple iPhone premium build quality, tez performance aur behtareen camera ke liye mashhoor hai.",
+    specs:{
+      "Display":"6.1\" Super Retina OLED",
+      "Storage":"128GB",
+      "Camera":"12MP Dual Camera",
+      "Security":"Face ID",
+      "OS":"iOS",
+      "Warranty":"Shop warranty available"
+    }
   },
   {
     id:3,
     name:"Infinix Smartphone",
     category:"Infinix",
     price:35000,
-    image:"https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500"
+    image:"https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500",
+    description:"Infinix ka value-for-money smartphone jo bari screen, acchi battery aur achi performance deta hai.",
+    specs:{
+      "Display":"6.78\" FHD+, 120Hz",
+      "RAM / Storage":"8GB / 256GB",
+      "Camera":"50MP Main Camera",
+      "Battery":"5000mAh, 33W Charging",
+      "Network":"4G",
+      "Warranty":"Shop warranty available"
+    }
   },
   {
     id:4,
     name:"Wireless Headphones",
     category:"Accessories",
     price:3500,
-    image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500"
+    image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500",
+    description:"Aaram deh wireless headphones jo clear sound aur lambi battery life ke saath aate hain.",
+    specs:{
+      "Connectivity":"Bluetooth 5.0",
+      "Battery":"Up to 20 hours",
+      "Features":"Built-in Mic, Foldable",
+      "Charging":"USB Type-C",
+      "Warranty":"Shop warranty available"
+    }
   },
   {
     id:5,
     name:"Premium Earbuds",
     category:"Accessories",
     price:5000,
-    image:"https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=500"
+    image:"https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=500",
+    description:"Halke aur compact earbuds jo behtareen bass, touch controls aur charging case ke saath aate hain.",
+    specs:{
+      "Connectivity":"Bluetooth 5.3",
+      "Battery":"Up to 24 hours (with case)",
+      "Controls":"Touch Controls",
+      "Features":"Built-in Mic, Noise Reduction",
+      "Warranty":"Shop warranty available"
+    }
   },
   {
     id:6,
     name:"Smart Watch",
     category:"Accessories",
     price:7500,
-    image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500"
+    image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500",
+    description:"Stylish smart watch jo fitness tracking, notifications aur calls ki sahulat deti hai.",
+    specs:{
+      "Display":"1.8\" HD Display",
+      "Health":"Heart Rate, Step Counter",
+      "Features":"Bluetooth Calling, Notifications",
+      "Battery":"Up to 7 days",
+      "Water Resistance":"IP67",
+      "Warranty":"Shop warranty available"
+    }
   }
 ];
 
@@ -476,11 +570,11 @@ function renderProducts(){
 
           <div class="price">${money(p.price)}</div>
 
-          <button class="gold-btn" onclick="addToCart(${p.id})">
+          <button class="gold-btn" type="button" onclick="addToCart(${p.id})">
             Add to Cart
           </button>
 
-          <button class="details-button" onclick="showDetails(${p.id})">
+          <button class="details-button" type="button" onclick="showDetails(${p.id})">
             View Details
           </button>
 
@@ -494,54 +588,47 @@ function renderProducts(){
 function showDetails(id){
 
   const p = products.find(item => item.id === id);
-
   if(!p) return;
 
-  const modal = document.getElementById("detailsModal");
-
-  if(!modal){
-    alert("Details window not found!");
-    return;
-  }
-
   document.getElementById("detailsImage").src = p.image;
-  document.getElementById("detailsName").innerText = p.name;
-  document.getElementById("detailsPrice").innerText = money(p.price);
+  document.getElementById("detailsImage").alt = p.name;
+  document.getElementById("detailsName").textContent = p.name;
+  document.getElementById("detailsPrice").textContent = money(p.price);
+  document.getElementById("detailsCategory").textContent = "Category: " + p.category;
+  document.getElementById("detailsDesc").textContent = p.description;
 
-  document.getElementById("detailsCategory").innerText =
-    "Category: " + p.category;
-
-  document.getElementById("detailsSpecs").innerText =
-    "Demo specifications: Actual details will be updated after shop confirmation.";
+  document.getElementById("detailsSpecs").innerHTML =
+    Object.entries(p.specs).map(([key,value]) =>
+      `<li><span>${key}</span><span>${value}</span></li>`
+    ).join("");
 
   document.getElementById("detailsCartButton").onclick = function(){
     addToCart(id);
   };
 
-  modal.style.display = "block";
+  const modal = document.getElementById("detailsModal");
+  modal.classList.add("open");
+  modal.scrollTop = 0;
   document.body.style.overflow = "hidden";
 }
 
 /* CLOSE PRODUCT DETAILS */
 
 function closeDetails(){
-
-  const modal = document.getElementById("detailsModal");
-
-  if(!modal) return;
-
-  modal.style.display = "none";
+  document.getElementById("detailsModal").classList.remove("open");
   document.body.style.overflow = "";
 }
 
-/* CLOSE DETAILS WITH ESC KEY */
+/* CLOSE: button, bahar click, Esc key */
 
-document.addEventListener("keydown", function(event){
+document.getElementById("detailsClose").addEventListener("click", closeDetails);
 
-  if(event.key === "Escape"){
-    closeDetails();
-  }
+document.getElementById("detailsModal").addEventListener("click", function(e){
+  if(e.target === this) closeDetails();
+});
 
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape") closeDetails();
 });
 
 /* CATEGORY FILTER */
@@ -550,7 +637,7 @@ function setCategory(value,button){
 
   category = value;
 
-  document.querySelectorAll(".filter").forEach(b =>
+  document.querySelectorAll(".filters .filter").forEach(b =>
     b.classList.remove("active")
   );
 
@@ -564,7 +651,6 @@ function setCategory(value,button){
 function addToCart(id){
 
   const product = products.find(p => p.id === id);
-
   if(!product) return;
 
   const existing = cart.find(item => item.id === id);
@@ -595,9 +681,9 @@ function updateCart(){
         </div>
 
         <div>
-          <button onclick="changeQty(${item.id},-1)">−</button>
-          <button onclick="changeQty(${item.id},1)">+</button>
-          <button class="remove" onclick="removeItem(${item.id})">
+          <button type="button" onclick="changeQty(${item.id},-1)">−</button>
+          <button type="button" onclick="changeQty(${item.id},1)">+</button>
+          <button type="button" class="remove" onclick="removeItem(${item.id})">
             Remove
           </button>
         </div>
@@ -619,7 +705,6 @@ function updateCart(){
 function changeQty(id,change){
 
   const item = cart.find(p => p.id === id);
-
   if(!item) return;
 
   item.qty += change;
@@ -634,9 +719,7 @@ function changeQty(id,change){
 /* REMOVE PRODUCT */
 
 function removeItem(id){
-
   cart = cart.filter(p => p.id !== id);
-
   updateCart();
 }
 
@@ -671,12 +754,9 @@ function checkout(){
   let total = 0;
 
   cart.forEach(item => {
-
     message += item.name + " x " + item.qty +
       " = " + money(item.price * item.qty) + "\n";
-
     total += item.price * item.qty;
-
   });
 
   message += "\nTotal: " + money(total);
