@@ -374,10 +374,19 @@ function renderProducts(){
     `).join("") || "<p>No products found.</p>";
 } 
 
+
 function showDetails(id){
- alert("View Details button working!");
   const p = products.find(item => item.id === id);
   if(!p) return;
+
+  const modal = document.getElementById("detailsModal");
+
+  if(!modal){
+    alert("Details window not found!");
+    return;
+  }
+
+  modal.style.display = "block";
 
   document.getElementById("detailsImage").src = p.image;
   document.getElementById("detailsName").innerText = p.name;
@@ -387,17 +396,11 @@ function showDetails(id){
     "Category: " + p.category;
 
   document.getElementById("detailsSpecs").innerText =
-    "Demo specifications: Actual product details will be updated after shop confirmation.";
+    "Demo specifications: Actual details will be updated after shop confirmation.";
 
   document.getElementById("detailsCartButton").onclick = function(){
     addToCart(id);
   };
-
-  document.getElementById("detailsModal").style.display = "block";
-}
-
-function closeDetails(){
-  document.getElementById("detailsModal").style.display = "none";
 }
 
 function setCategory(value,button){
