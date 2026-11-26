@@ -1,4 +1,4 @@
- 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,13 +14,17 @@
   --text:#f5f2e9;
   --muted:#aaa;
 }
+
 *{box-sizing:border-box;margin:0;padding:0}
+
 html{scroll-behavior:smooth}
+
 body{
   background:var(--black);
   color:var(--text);
   font-family:Arial,sans-serif;
 }
+
 header{
   background:#101010;
   border-bottom:1px solid #3a3020;
@@ -31,11 +35,13 @@ header{
   gap:15px;
   flex-wrap:wrap;
 }
+
 .logo{font-size:27px;font-weight:900;letter-spacing:2px}
 .logo span{color:var(--gold)}
 nav{display:flex;gap:23px;flex-wrap:wrap}
 nav a{color:white;text-decoration:none;font-size:14px}
 nav a:hover{color:var(--gold)}
+
 .gold-btn{
   background:var(--gold);
   color:#111;
@@ -45,6 +51,7 @@ nav a:hover{color:var(--gold)}
   font-weight:bold;
   cursor:pointer;
 }
+
 .hero{
   padding:90px 7%;
   min-height:390px;
@@ -52,38 +59,57 @@ nav a:hover{color:var(--gold)}
   align-items:center;
   background:linear-gradient(90deg,#080808 20%,#17130c 100%);
 }
+
 .hero-content{max-width:650px}
 .eyebrow{color:var(--gold);letter-spacing:4px;font-size:12px}
 .hero h1{font-size:clamp(38px,6vw,65px);margin:18px 0}
 .hero h1 span{color:var(--gold)}
 .hero p{color:#bbb;line-height:1.8;margin-bottom:25px}
+
 .section{padding:55px 7%}
 .section-title{text-align:center;margin-bottom:30px}
 .section-title h2{font-size:32px}
 .section-title p{color:var(--muted);margin-top:10px}
+
 .filters{
-  display:flex;justify-content:center;
-  flex-wrap:wrap;gap:10px;margin-bottom:25px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:25px;
 }
+
 .filter{
-  padding:10px 18px;border:1px solid #65502c;
-  background:#151515;color:white;border-radius:25px;
+  padding:10px 18px;
+  border:1px solid #65502c;
+  background:#151515;
+  color:white;
+  border-radius:25px;
   cursor:pointer;
 }
+
 .filter.active,.filter:hover{
-  background:var(--gold);color:#111;
+  background:var(--gold);
+  color:#111;
 }
+
 .search{
-  display:block;width:min(100%,450px);
-  margin:0 auto 30px;padding:14px;
-  background:#191919;border:1px solid #554322;
-  border-radius:6px;color:white;
+  display:block;
+  width:min(100%,450px);
+  margin:0 auto 30px;
+  padding:14px;
+  background:#191919;
+  border:1px solid #554322;
+  border-radius:6px;
+  color:white;
 }
+
 .products{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:22px;
 }
+
 .product{
   background:var(--panel);
   border:1px solid #302719;
@@ -91,117 +117,153 @@ nav a:hover{color:var(--gold)}
   overflow:hidden;
   transition:.2s;
 }
-.product:hover{transform:translateY(-5px);border-color:var(--gold)}
-.product img{
-  width:100%;height:210px;
-  object-fit:contain;background:#fff;padding:12px;
+
+.product:hover{
+  transform:translateY(-5px);
+  border-color:var(--gold);
 }
+
+.product img{
+  width:100%;
+  height:210px;
+  object-fit:contain;
+  background:#fff;
+  padding:12px;
+}
+
 .product-info{padding:18px}
 .tag{color:var(--gold);font-size:11px;letter-spacing:1px}
 .product h3{margin:9px 0}
 .price{color:var(--gold);font-size:20px;font-weight:bold;margin:12px 0}
 .product button{width:100%}
+
 .cart-box{
-  display:none;background:#171717;
+  display:none;
+  background:#171717;
   border:1px solid var(--gold);
-  border-radius:10px;padding:25px;
+  border-radius:10px;
+  padding:25px;
   margin:20px 7%;
 }
+
 .cart-item{
-  display:flex;justify-content:space-between;
-  align-items:center;gap:12px;flex-wrap:wrap;
-  padding:15px 0;border-bottom:1px solid #333;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  padding:15px 0;
+  border-bottom:1px solid #333;
 }
+
 .cart-item button{
-  background:#282828;color:white;border:1px solid #555;
-  padding:7px 12px;cursor:pointer;
+  background:#282828;
+  color:white;
+  border:1px solid #555;
+  padding:7px 12px;
+  cursor:pointer;
 }
+
 .cart-item .remove{color:#ff7777}
 .total{font-size:22px;color:var(--gold);margin-top:20px}
+
 .about{
-  background:#151515;text-align:center;
+  background:#151515;
+  text-align:center;
   border-top:1px solid #352a19;
   border-bottom:1px solid #352a19;
 }
-.about p{color:#bbb;max-width:650px;margin:15px auto;line-height:1.8}
+
+.about p{
+  color:#bbb;
+  max-width:650px;
+  margin:15px auto;
+  line-height:1.8;
+}
+
 .contact{text-align:center}
 .contact p{margin:12px;color:#ccc}
+
 footer{
-  padding:30px 7%;text-align:center;
-  background:#050505;color:#aaa;line-height:2;
+  padding:30px 7%;
+  text-align:center;
+  background:#050505;
+  color:#aaa;
+  line-height:2;
 }
+
 footer strong{color:var(--gold)}
+
+/* PRODUCT DETAILS */
+
+.details-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:rgba(0,0,0,.92);
+  overflow-y:auto;
+  padding:30px 15px;
+}
+
+.details-content{
+  max-width:750px;
+  margin:30px auto;
+  padding:25px;
+  background:#151515;
+  border:1px solid var(--gold);
+  border-radius:12px;
+}
+
+.details-content img{
+  width:100%;
+  height:280px;
+  object-fit:contain;
+  background:white;
+  border-radius:8px;
+  padding:10px;
+}
+
+.details-content h2{
+  color:var(--gold);
+  margin:18px 0;
+}
+
+.details-content p{
+  color:#ccc;
+  line-height:2;
+}
+
+.details-content .gold-btn{margin-top:15px}
+
+.details-close{
+  float:right;
+  background:#333;
+  color:white;
+  border:1px solid #666;
+  padding:8px 14px;
+  cursor:pointer;
+  border-radius:5px;
+}
+
+.details-button{
+  width:100%;
+  margin-top:9px;
+  padding:11px;
+  background:transparent;
+  color:var(--gold);
+  border:1px solid var(--gold);
+  border-radius:5px;
+  cursor:pointer;
+}
+
 @media(max-width:600px){
   header{justify-content:center}
   nav{justify-content:center}
   .hero{padding:65px 7%}
   .section{padding:40px 5%}
+  .details-content{padding:18px}
 }
-
-/* V3 PRODUCT DETAILS */
-.details-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: rgba(0,0,0,.92);
-  overflow-y: auto;
-  padding: 30px 15px;
-}
-
-.details-content {
-  max-width: 750px;
-  margin: 30px auto;
-  padding: 25px;
-  background: #151515;
-  border: 1px solid var(--gold);
-  border-radius: 12px;
-}
-
-.details-content img {
-  width: 100%;
-  height: 280px;
-  object-fit: contain;
-  background: white;
-  border-radius: 8px;
-  padding: 10px;
-}
-
-.details-content h2 {
-  color: var(--gold);
-  margin: 18px 0;
-}
-
-.details-content p {
-  color: #ccc;
-  line-height: 2;
-}
-
-.details-content .gold-btn {
-  margin-top: 15px;
-}
-
-.details-close {
-  float: right;
-  background: #333;
-  color: white;
-  border: 1px solid #666;
-  padding: 8px 14px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.details-button {
-  width: 100%;
-  margin-top: 9px;
-  padding: 11px;
-  background: transparent;
-  color: var(--gold);
-  border: 1px solid var(--gold);
-  border-radius: 5px;
-  cursor: pointer;
-}
-
 </style>
 </head>
 
@@ -209,12 +271,14 @@ footer strong{color:var(--gold)}
 
 <header>
   <div class="logo">PHONE <span>POINT.</span></div>
+
   <nav>
     <a href="#home">Home</a>
     <a href="#products">Products</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </nav>
+
   <button class="gold-btn" onclick="toggleCart()">
     🛒 Cart (<span id="count">0</span>)
   </button>
@@ -225,6 +289,7 @@ footer strong{color:var(--gold)}
     <div class="eyebrow">PREMIUM MOBILE EXPERIENCE</div>
     <h1>Technology Meets <span>Luxury.</span></h1>
     <p>Discover smartphones, accessories and the latest technology at PHONE POINT.</p>
+
     <a href="#products" class="gold-btn" style="display:inline-block;text-decoration:none">
       Explore Collection →
     </a>
@@ -232,13 +297,19 @@ footer strong{color:var(--gold)}
 </section>
 
 <section class="section" id="products">
+
   <div class="section-title">
     <div class="eyebrow">OUR COLLECTION</div>
     <h2>Featured Products</h2>
     <p>Explore our mobile phones and accessories</p>
   </div>
 
-  <input class="search" id="search" placeholder="Search products..." oninput="renderProducts()">
+  <input
+    class="search"
+    id="search"
+    placeholder="Search products..."
+    oninput="renderProducts()"
+  >
 
   <div class="filters">
     <button class="filter active" onclick="setCategory('All',this)">All</button>
@@ -249,35 +320,54 @@ footer strong{color:var(--gold)}
   </div>
 
   <div class="products" id="productsGrid"></div>
- 
 
-<div class="details-modal" id="detailsModal">
-  <div class="details-content">
-    <button class="details-close" onclick="closeDetails()">✕ Close</button>
-    <div style="clear:both"></div>
+  <!-- PRODUCT DETAILS MODAL -->
 
-    <img id="detailsImage" src="" alt="Product">
+  <div class="details-modal" id="detailsModal" onclick="closeDetails()">
 
-    <h2 id="detailsName"></h2>
-    <div class="price" id="detailsPrice"></div>
-    <p id="detailsCategory"></p>
-    <p id="detailsSpecs"></p>
+    <div class="details-content" onclick="event.stopPropagation()">
 
-    <button class="gold-btn" id="detailsCartButton">
-      Add to Cart
-    </button>
+      <button class="details-close" onclick="closeDetails()">
+        ✕ Close
+      </button>
+
+      <div style="clear:both"></div>
+
+      <img id="detailsImage" src="" alt="Product">
+
+      <h2 id="detailsName"></h2>
+
+      <div class="price" id="detailsPrice"></div>
+
+      <p id="detailsCategory"></p>
+
+      <p id="detailsSpecs"></p>
+
+      <button class="gold-btn" id="detailsCartButton">
+        Add to Cart
+      </button>
+
+    </div>
   </div>
-</div>
 
 </section>
 
 <div class="cart-box" id="cart">
   <h2>Your Shopping Cart</h2>
+
   <div id="cartItems"></div>
+
   <div class="total" id="total">Total: Rs. 0</div>
+
   <br>
-  <button class="gold-btn" onclick="checkout()">Order on WhatsApp</button>
-  <button class="filter" onclick="toggleCart()">Continue Shopping</button>
+
+  <button class="gold-btn" onclick="checkout()">
+    Order on WhatsApp
+  </button>
+
+  <button class="filter" onclick="toggleCart()">
+    Continue Shopping
+  </button>
 </div>
 
 <section class="section about" id="about">
@@ -291,9 +381,13 @@ footer strong{color:var(--gold)}
   <h2>Contact PHONE POINT</h2>
   <p>📍 Lyric Mobile Mall, Saddar, Karachi</p>
   <p>📞 +92 311 2010099</p>
-  <a class="gold-btn" style="display:inline-block;text-decoration:none;margin-top:12px"
-     href="https://www.google.com/maps/search/?api=1&query=Lyric+Mobile+Mall+Saddar+Karachi">
-     Find Our Location
+
+  <a
+    class="gold-btn"
+    style="display:inline-block;text-decoration:none;margin-top:12px"
+    href="https://www.google.com/maps/search/?api=1&query=Lyric+Mobile+Mall+Saddar+Karachi"
+  >
+    Find Our Location
   </a>
 </section>
 
@@ -304,34 +398,47 @@ footer strong{color:var(--gold)}
 </footer>
 
 <script>
+
 const products = [
   {
-    id:1,name:"Samsung Galaxy",category:"Samsung",
+    id:1,
+    name:"Samsung Galaxy",
+    category:"Samsung",
     price:45000,
     image:"https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=500"
   },
   {
-    id:2,name:"Apple iPhone",category:"Apple",
+    id:2,
+    name:"Apple iPhone",
+    category:"Apple",
     price:120000,
     image:"https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500"
   },
   {
-    id:3,name:"Infinix Smartphone",category:"Infinix",
+    id:3,
+    name:"Infinix Smartphone",
+    category:"Infinix",
     price:35000,
     image:"https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500"
   },
   {
-    id:4,name:"Wireless Headphones",category:"Accessories",
+    id:4,
+    name:"Wireless Headphones",
+    category:"Accessories",
     price:3500,
     image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500"
   },
   {
-    id:5,name:"Premium Earbuds",category:"Accessories",
+    id:5,
+    name:"Premium Earbuds",
+    category:"Accessories",
     price:5000,
     image:"https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=500"
   },
   {
-    id:6,name:"Smart Watch",category:"Accessories",
+    id:6,
+    name:"Smart Watch",
+    category:"Accessories",
     price:7500,
     image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500"
   }
@@ -344,8 +451,10 @@ function money(n){
   return "Rs. " + n.toLocaleString("en-PK");
 }
 
+/* DISPLAY PRODUCTS */
 
 function renderProducts(){
+
   const query = document.getElementById("search").value.toLowerCase();
 
   const filtered = products.filter(p =>
@@ -356,10 +465,15 @@ function renderProducts(){
   document.getElementById("productsGrid").innerHTML =
     filtered.map(p => `
       <div class="product">
+
         <img src="${p.image}" alt="${p.name}" loading="lazy">
+
         <div class="product-info">
+
           <div class="tag">${p.category.toUpperCase()}</div>
+
           <h3>${p.name}</h3>
+
           <div class="price">${money(p.price)}</div>
 
           <button class="gold-btn" onclick="addToCart(${p.id})">
@@ -369,14 +483,18 @@ function renderProducts(){
           <button class="details-button" onclick="showDetails(${p.id})">
             View Details
           </button>
+
         </div>
       </div>
     `).join("") || "<p>No products found.</p>";
-} 
+}
 
+/* OPEN PRODUCT DETAILS */
 
 function showDetails(id){
+
   const p = products.find(item => item.id === id);
+
   if(!p) return;
 
   const modal = document.getElementById("detailsModal");
@@ -385,8 +503,6 @@ function showDetails(id){
     alert("Details window not found!");
     return;
   }
-
-  modal.style.display = "block";
 
   document.getElementById("detailsImage").src = p.image;
   document.getElementById("detailsName").innerText = p.name;
@@ -401,97 +517,190 @@ function showDetails(id){
   document.getElementById("detailsCartButton").onclick = function(){
     addToCart(id);
   };
+
+  modal.style.display = "block";
+  document.body.style.overflow = "hidden";
 }
 
+/* CLOSE PRODUCT DETAILS */
+
+function closeDetails(){
+
+  const modal = document.getElementById("detailsModal");
+
+  if(!modal) return;
+
+  modal.style.display = "none";
+  document.body.style.overflow = "";
+}
+
+/* CLOSE DETAILS WITH ESC KEY */
+
+document.addEventListener("keydown", function(event){
+
+  if(event.key === "Escape"){
+    closeDetails();
+  }
+
+});
+
+/* CATEGORY FILTER */
+
 function setCategory(value,button){
+
   category = value;
-  document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+
+  document.querySelectorAll(".filter").forEach(b =>
+    b.classList.remove("active")
+  );
+
   button.classList.add("active");
+
   renderProducts();
 }
+
+/* ADD TO CART */
+
 function addToCart(id){
-  const product = products.find(p=>p.id===id);
-  const existing = cart.find(item=>item.id===id);
-  if(existing) existing.qty++;
-  else cart.push({...product,qty:1});
+
+  const product = products.find(p => p.id === id);
+
+  if(!product) return;
+
+  const existing = cart.find(item => item.id === id);
+
+  if(existing){
+    existing.qty++;
+  } else {
+    cart.push({...product,qty:1});
+  }
+
   updateCart();
 }
 
+/* UPDATE CART */
+
 function updateCart(){
+
   document.getElementById("count").innerText =
-    cart.reduce((sum,item)=>sum+item.qty,0);
+    cart.reduce((sum,item) => sum + item.qty,0);
 
   document.getElementById("cartItems").innerHTML =
-    cart.map(item=>`
+    cart.map(item => `
       <div class="cart-item">
+
         <div>
           <strong>${item.name}</strong><br>
           ${money(item.price)} × ${item.qty}
         </div>
+
         <div>
           <button onclick="changeQty(${item.id},-1)">−</button>
           <button onclick="changeQty(${item.id},1)">+</button>
-          <button class="remove" onclick="removeItem(${item.id})">Remove</button>
+          <button class="remove" onclick="removeItem(${item.id})">
+            Remove
+          </button>
         </div>
+
       </div>
     `).join("") || "<p>Your cart is empty.</p>";
 
-  const total = cart.reduce((sum,item)=>sum+item.price*item.qty,0);
-  document.getElementById("total").innerText="Total: "+money(total);
+  const total = cart.reduce(
+    (sum,item) => sum + item.price * item.qty,
+    0
+  );
+
+  document.getElementById("total").innerText =
+    "Total: " + money(total);
 }
+
+/* CHANGE QUANTITY */
 
 function changeQty(id,change){
-  const item=cart.find(p=>p.id===id);
-  if(!item)return;
-  item.qty+=change;
-  if(item.qty<=0)removeItem(id);
-  else updateCart();
+
+  const item = cart.find(p => p.id === id);
+
+  if(!item) return;
+
+  item.qty += change;
+
+  if(item.qty <= 0){
+    removeItem(id);
+  } else {
+    updateCart();
+  }
 }
+
+/* REMOVE PRODUCT */
 
 function removeItem(id){
-  cart=cart.filter(p=>p.id!==id);
+
+  cart = cart.filter(p => p.id !== id);
+
   updateCart();
 }
+
+/* OPEN AND CLOSE CART */
 
 function toggleCart(){
-  const box=document.getElementById("cart");
-  box.style.display=box.style.display==="block"?"none":"block";
+
+  const box = document.getElementById("cart");
+
+  box.style.display =
+    box.style.display === "block" ? "none" : "block";
+
   updateCart();
-  if(box.style.display==="block")
+
+  if(box.style.display === "block"){
     box.scrollIntoView({behavior:"smooth"});
+  }
 }
 
+/* WHATSAPP CHECKOUT */
+
 function checkout(){
-  if(cart.length===0){
+
+  if(cart.length === 0){
     alert("Your cart is empty!");
     return;
   }
 
-  let message="Assalam-o-Alaikum PHONE POINT! I want to order:\n\n";
-  let total=0;
+  let message =
+    "Assalam-o-Alaikum PHONE POINT! I want to order:\n\n";
 
-  cart.forEach(item=>{
-    message+=item.name+" x "+item.qty+" = "+money(item.price*item.qty)+"\n";
-    total+=item.price*item.qty;
+  let total = 0;
+
+  cart.forEach(item => {
+
+    message += item.name + " x " + item.qty +
+      " = " + money(item.price * item.qty) + "\n";
+
+    total += item.price * item.qty;
+
   });
 
-  message+="\nTotal: "+money(total);
+  message += "\nTotal: " + money(total);
 
   // Replace with the owner's verified WhatsApp number
-  const phone="923XXXXXXXXX";
+  const phone = "923XXXXXXXXX";
 
   if(phone.includes("X")){
     alert("Demo mode: Add the shop's verified WhatsApp number first.");
     return;
   }
 
-  window.open("https://wa.me/"+phone+"?text="+encodeURIComponent(message),"_blank");
+  window.open(
+    "https://wa.me/" + phone + "?text=" + encodeURIComponent(message),
+    "_blank"
+  );
 }
+
+/* INITIAL LOAD */
 
 renderProducts();
 updateCart();
+
 </script>
 
 </body>
 </html>
-
