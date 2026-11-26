@@ -1,178 +1,141 @@
-
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PHONE POINT | Mobile Store</title>
+<title>PHONE POINT | Premium Mobile Store</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  --gold:#d6ad55;
+  --black:#090909;
+  --panel:#151515;
+  --text:#f5f2e9;
+  --muted:#aaa;
 }
-
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f6fa;
-  color: #172033;
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--black);
+  color:var(--text);
+  font-family:Arial,sans-serif;
 }
-
-header {
-  background: #101c35;
-  color: white;
-  padding: 20px 7%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
+header{
+  background:#101010;
+  border-bottom:1px solid #3a3020;
+  padding:20px 7%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
 }
-
-.logo {
-  font-size: 25px;
-  font-weight: bold;
+.logo{font-size:27px;font-weight:900;letter-spacing:2px}
+.logo span{color:var(--gold)}
+nav{display:flex;gap:23px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none;font-size:14px}
+nav a:hover{color:var(--gold)}
+.gold-btn{
+  background:var(--gold);
+  color:#111;
+  border:0;
+  border-radius:5px;
+  padding:12px 18px;
+  font-weight:bold;
+  cursor:pointer;
 }
-
-.logo span {
-  color: #35c5a0;
+.hero{
+  padding:90px 7%;
+  min-height:390px;
+  display:flex;
+  align-items:center;
+  background:linear-gradient(90deg,#080808 20%,#17130c 100%);
 }
-
-.cart-button {
-  background: #35c5a0;
-  border: 0;
-  padding: 11px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
+.hero-content{max-width:650px}
+.eyebrow{color:var(--gold);letter-spacing:4px;font-size:12px}
+.hero h1{font-size:clamp(38px,6vw,65px);margin:18px 0}
+.hero h1 span{color:var(--gold)}
+.hero p{color:#bbb;line-height:1.8;margin-bottom:25px}
+.section{padding:55px 7%}
+.section-title{text-align:center;margin-bottom:30px}
+.section-title h2{font-size:32px}
+.section-title p{color:var(--muted);margin-top:10px}
+.filters{
+  display:flex;justify-content:center;
+  flex-wrap:wrap;gap:10px;margin-bottom:25px;
 }
-
-.hero {
-  background: #172b50;
-  color: white;
-  padding: 65px 7%;
-  text-align: center;
+.filter{
+  padding:10px 18px;border:1px solid #65502c;
+  background:#151515;color:white;border-radius:25px;
+  cursor:pointer;
 }
-
-.hero h1 {
-  font-size: 38px;
-  margin-bottom: 15px;
+.filter.active,.filter:hover{
+  background:var(--gold);color:#111;
 }
-
-.hero p {
-  color: #d1d9e8;
-  margin-bottom: 25px;
+.search{
+  display:block;width:min(100%,450px);
+  margin:0 auto 30px;padding:14px;
+  background:#191919;border:1px solid #554322;
+  border-radius:6px;color:white;
 }
-
-.hero a {
-  display: inline-block;
-  background: #35c5a0;
-  color: #102039;
-  text-decoration: none;
-  padding: 13px 25px;
-  border-radius: 7px;
-  font-weight: bold;
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:22px;
 }
-
-.section {
-  padding: 45px 7%;
+.product{
+  background:var(--panel);
+  border:1px solid #302719;
+  border-radius:10px;
+  overflow:hidden;
+  transition:.2s;
 }
-
-.section h2 {
-  margin-bottom: 25px;
+.product:hover{transform:translateY(-5px);border-color:var(--gold)}
+.product img{
+  width:100%;height:210px;
+  object-fit:contain;background:#fff;padding:12px;
 }
-
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 22px;
+.product-info{padding:18px}
+.tag{color:var(--gold);font-size:11px;letter-spacing:1px}
+.product h3{margin:9px 0}
+.price{color:var(--gold);font-size:20px;font-weight:bold;margin:12px 0}
+.product button{width:100%}
+.cart-box{
+  display:none;background:#171717;
+  border:1px solid var(--gold);
+  border-radius:10px;padding:25px;
+  margin:20px 7%;
 }
-
-.product {
-  background: white;
-  border-radius: 12px;
-  padding: 18px;
-  box-shadow: 0 3px 14px #0000000d;
+.cart-item{
+  display:flex;justify-content:space-between;
+  align-items:center;gap:12px;flex-wrap:wrap;
+  padding:15px 0;border-bottom:1px solid #333;
 }
-
-.product img {
-  width: 100%;
-  height: 175px;
-  object-fit: contain;
-  background: #f1f3f8;
-  border-radius: 8px;
+.cart-item button{
+  background:#282828;color:white;border:1px solid #555;
+  padding:7px 12px;cursor:pointer;
 }
-
-.product h3 {
-  margin: 15px 0 8px;
+.cart-item .remove{color:#ff7777}
+.total{font-size:22px;color:var(--gold);margin-top:20px}
+.about{
+  background:#151515;text-align:center;
+  border-top:1px solid #352a19;
+  border-bottom:1px solid #352a19;
 }
-
-.price {
-  color: #087d62;
-  font-size: 19px;
-  font-weight: bold;
-  margin-bottom: 13px;
+.about p{color:#bbb;max-width:650px;margin:15px auto;line-height:1.8}
+.contact{text-align:center}
+.contact p{margin:12px;color:#ccc}
+footer{
+  padding:30px 7%;text-align:center;
+  background:#050505;color:#aaa;line-height:2;
 }
-
-.product button {
-  background: #172b50;
-  color: white;
-  border: none;
-  padding: 12px;
-  width: 100%;
-  border-radius: 7px;
-  cursor: pointer;
-}
-
-.product button:hover {
-  background: #35a98d;
-}
-
-.cart {
-  background: white;
-  padding: 25px 7%;
-  margin: 20px 7%;
-  border-radius: 12px;
-  display: none;
-}
-
-.cart h2 {
-  margin-bottom: 15px;
-}
-
-.cart-item {
-  padding: 12px 0;
-  border-bottom: 1px solid #ddd;
-}
-
-.cart button {
-  cursor: pointer;
-  padding: 7px 12px;
-  margin: 5px;
-}
-
-.checkout {
-  background: #168b6c;
-  color: white;
-  border: none;
-  padding: 13px 20px;
-  border-radius: 7px;
-  margin-top: 15px;
-}
-
-footer {
-  background: #101c35;
-  color: white;
-  text-align: center;
-  padding: 30px 15px;
-  line-height: 2;
-}
-
-@media(max-width:600px) {
-  .hero h1 {
-    font-size: 29px;
-  }
+footer strong{color:var(--gold)}
+@media(max-width:600px){
+  header{justify-content:center}
+  nav{justify-content:center}
+  .hero{padding:65px 7%}
+  .section{padding:40px 5%}
 }
 </style>
 </head>
@@ -180,150 +143,233 @@ footer {
 <body>
 
 <header>
-  <div class="logo">PHONE <span>POINT</span></div>
-  <button class="cart-button" onclick="toggleCart()">
+  <div class="logo">PHONE <span>POINT.</span></div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#products">Products</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="gold-btn" onclick="toggleCart()">
     🛒 Cart (<span id="count">0</span>)
   </button>
 </header>
 
-<section class="hero">
-  <h1>Your Trusted Mobile Store</h1>
-  <p>Explore Smartphones, Accessories & Latest Technology.</p>
-  <a href="#products">Explore Products</a>
-</section>
-
-<section class="section" id="products">
-  <h2>Our Products</h2>
-
-  <div class="products">
-
-    <div class="product">
-      <img src="https://placehold.co/300x200?text=Samsung+Phone" alt="Samsung phone">
-      <h3>Samsung Galaxy</h3>
-      <p class="price">Rs. 45,000</p>
-      <button onclick="addToCart('Samsung Galaxy',45000)">
-        Add to Cart
-      </button>
-    </div>
-
-    <div class="product">
-      <img src="https://placehold.co/300x200?text=iPhone" alt="iPhone">
-      <h3>Apple iPhone</h3>
-      <p class="price">Rs. 120,000</p>
-      <button onclick="addToCart('Apple iPhone',120000)">
-        Add to Cart
-      </button>
-    </div>
-
-    <div class="product">
-      <img src="https://placehold.co/300x200?text=Infinix" alt="Infinix phone">
-      <h3>Infinix Smartphone</h3>
-      <p class="price">Rs. 35,000</p>
-      <button onclick="addToCart('Infinix Smartphone',35000)">
-        Add to Cart
-      </button>
-    </div>
-
-    <div class="product">
-      <img src="https://placehold.co/300x200?text=Headphones" alt="Headphones">
-      <h3>Wireless Headphones</h3>
-      <p class="price">Rs. 3,500</p>
-      <button onclick="addToCart('Wireless Headphones',3500)">
-        Add to Cart
-      </button>
-    </div>
-
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="eyebrow">PREMIUM MOBILE EXPERIENCE</div>
+    <h1>Technology Meets <span>Luxury.</span></h1>
+    <p>Discover smartphones, accessories and the latest technology at PHONE POINT.</p>
+    <a href="#products" class="gold-btn" style="display:inline-block;text-decoration:none">
+      Explore Collection →
+    </a>
   </div>
 </section>
 
-<section class="cart" id="cart">
+<section class="section" id="products">
+  <div class="section-title">
+    <div class="eyebrow">OUR COLLECTION</div>
+    <h2>Featured Products</h2>
+    <p>Explore our mobile phones and accessories</p>
+  </div>
+
+  <input class="search" id="search" placeholder="Search products..." oninput="renderProducts()">
+
+  <div class="filters">
+    <button class="filter active" onclick="setCategory('All',this)">All</button>
+    <button class="filter" onclick="setCategory('Samsung',this)">Samsung</button>
+    <button class="filter" onclick="setCategory('Apple',this)">Apple</button>
+    <button class="filter" onclick="setCategory('Infinix',this)">Infinix</button>
+    <button class="filter" onclick="setCategory('Accessories',this)">Accessories</button>
+  </div>
+
+  <div class="products" id="productsGrid"></div>
+</section>
+
+<div class="cart-box" id="cart">
   <h2>Your Shopping Cart</h2>
   <div id="cartItems"></div>
-  <h3 id="total">Total: Rs. 0</h3>
-  <button class="checkout" onclick="checkout()">
-    Order on WhatsApp
-  </button>
+  <div class="total" id="total">Total: Rs. 0</div>
+  <br>
+  <button class="gold-btn" onclick="checkout()">Order on WhatsApp</button>
+  <button class="filter" onclick="toggleCart()">Continue Shopping</button>
+</div>
+
+<section class="section about" id="about">
+  <div class="eyebrow">ABOUT US</div>
+  <h2>Welcome to PHONE POINT</h2>
+  <p>Your destination for smartphones, mobile accessories and technology. Visit our store at Lyric Mobile Mall, Saddar, Karachi.</p>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="eyebrow">GET IN TOUCH</div>
+  <h2>Contact PHONE POINT</h2>
+  <p>📍 Lyric Mobile Mall, Saddar, Karachi</p>
+  <p>📞 +92 311 2010099</p>
+  <a class="gold-btn" style="display:inline-block;text-decoration:none;margin-top:12px"
+     href="https://www.google.com/maps/search/?api=1&query=Lyric+Mobile+Mall+Saddar+Karachi">
+     Find Our Location
+  </a>
 </section>
 
 <footer>
-  <h2>PHONE POINT</h2>
-  <p>Lyric Mobile Mall, Saddar, Karachi</p>
-  <p>Phone: +92 311 2010099</p>
-  <p>Demo Website | All Rights Reserved</p>
+  <strong>PHONE POINT.</strong>
+  <p>Premium Mobile Store | Saddar, Karachi</p>
+  <p>Demo Website © 2026</p>
 </footer>
 
 <script>
+const products = [
+  {
+    id:1,name:"Samsung Galaxy",category:"Samsung",
+    price:45000,
+    image:"https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=500"
+  },
+  {
+    id:2,name:"Apple iPhone",category:"Apple",
+    price:120000,
+    image:"https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500"
+  },
+  {
+    id:3,name:"Infinix Smartphone",category:"Infinix",
+    price:35000,
+    image:"https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500"
+  },
+  {
+    id:4,name:"Wireless Headphones",category:"Accessories",
+    price:3500,
+    image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500"
+  },
+  {
+    id:5,name:"Premium Earbuds",category:"Accessories",
+    price:5000,
+    image:"https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=500"
+  },
+  {
+    id:6,name:"Smart Watch",category:"Accessories",
+    price:7500,
+    image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500"
+  }
+];
+
 let cart = [];
+let category = "All";
 
-function addToCart(name, price) {
-  cart.push({name, price});
-  updateCart();
-  alert(name + " added to cart!");
+function money(n){
+  return "Rs. " + n.toLocaleString("en-PK");
 }
 
-function updateCart() {
-  document.getElementById("count").innerText = cart.length;
+function renderProducts(){
+  const query = document.getElementById("search").value.toLowerCase();
+  const filtered = products.filter(p =>
+    (category === "All" || p.category === category) &&
+    p.name.toLowerCase().includes(query)
+  );
 
-  let items = document.getElementById("cartItems");
-  let total = 0;
-
-  items.innerHTML = "";
-
-  cart.forEach((item, index) => {
-    total += item.price;
-
-    items.innerHTML += `
-      <div class="cart-item">
-        ${item.name} - Rs. ${item.price.toLocaleString()}
-        <button onclick="removeItem(${index})">Remove</button>
+  document.getElementById("productsGrid").innerHTML =
+    filtered.map(p => `
+      <div class="product">
+        <img src="${p.image}" alt="${p.name}" loading="lazy">
+        <div class="product-info">
+          <div class="tag">${p.category.toUpperCase()}</div>
+          <h3>${p.name}</h3>
+          <div class="price">${money(p.price)}</div>
+          <button class="gold-btn" onclick="addToCart(${p.id})">
+            Add to Cart
+          </button>
+        </div>
       </div>
-    `;
-  });
-
-  document.getElementById("total").innerText =
-    "Total: Rs. " + total.toLocaleString();
+    `).join("") || "<p>No products found.</p>";
 }
 
-function removeItem(index) {
-  cart.splice(index, 1);
+function setCategory(value,button){
+  category = value;
+  document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+  button.classList.add("active");
+  renderProducts();
+}
+
+function addToCart(id){
+  const product = products.find(p=>p.id===id);
+  const existing = cart.find(item=>item.id===id);
+  if(existing) existing.qty++;
+  else cart.push({...product,qty:1});
   updateCart();
 }
 
-function toggleCart() {
-  let section = document.getElementById("cart");
+function updateCart(){
+  document.getElementById("count").innerText =
+    cart.reduce((sum,item)=>sum+item.qty,0);
 
-  section.style.display =
-    section.style.display === "block" ? "none" : "block";
+  document.getElementById("cartItems").innerHTML =
+    cart.map(item=>`
+      <div class="cart-item">
+        <div>
+          <strong>${item.name}</strong><br>
+          ${money(item.price)} × ${item.qty}
+        </div>
+        <div>
+          <button onclick="changeQty(${item.id},-1)">−</button>
+          <button onclick="changeQty(${item.id},1)">+</button>
+          <button class="remove" onclick="removeItem(${item.id})">Remove</button>
+        </div>
+      </div>
+    `).join("") || "<p>Your cart is empty.</p>";
 
+  const total = cart.reduce((sum,item)=>sum+item.price*item.qty,0);
+  document.getElementById("total").innerText="Total: "+money(total);
+}
+
+function changeQty(id,change){
+  const item=cart.find(p=>p.id===id);
+  if(!item)return;
+  item.qty+=change;
+  if(item.qty<=0)removeItem(id);
+  else updateCart();
+}
+
+function removeItem(id){
+  cart=cart.filter(p=>p.id!==id);
   updateCart();
 }
 
-function checkout() {
-  if (cart.length === 0) {
+function toggleCart(){
+  const box=document.getElementById("cart");
+  box.style.display=box.style.display==="block"?"none":"block";
+  updateCart();
+  if(box.style.display==="block")
+    box.scrollIntoView({behavior:"smooth"});
+}
+
+function checkout(){
+  if(cart.length===0){
     alert("Your cart is empty!");
     return;
   }
 
-  let message = "Assalam-o-Alaikum PHONE POINT! My order:\n\n";
-  let total = 0;
+  let message="Assalam-o-Alaikum PHONE POINT! I want to order:\n\n";
+  let total=0;
 
-  cart.forEach(item => {
-    message += item.name + " - Rs. " +
-      item.price.toLocaleString() + "\n";
-    total += item.price;
+  cart.forEach(item=>{
+    message+=item.name+" x "+item.qty+" = "+money(item.price*item.qty)+"\n";
+    total+=item.price*item.qty;
   });
 
-  message += "\nTotal: Rs. " + total.toLocaleString();
+  message+="\nTotal: "+money(total);
 
-  // Replace with the shop's verified WhatsApp number
-  let phone = "923XXXXXXXXX";
+  // Replace with the owner's verified WhatsApp number
+  const phone="923XXXXXXXXX";
 
-  window.open(
-    "https://wa.me/" + phone + "?text=" +
-    encodeURIComponent(message),
-    "_blank"
-  );
+  if(phone.includes("X")){
+    alert("Demo mode: Add the shop's verified WhatsApp number first.");
+    return;
+  }
+
+  window.open("https://wa.me/"+phone+"?text="+encodeURIComponent(message),"_blank");
 }
+
+renderProducts();
+updateCart();
 </script>
 
 </body>
