@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHONE POINT | Mobile Store</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6fa;
+  color: #172033;
+}
+
+header {
+  background: #101c35;
+  color: white;
+  padding: 20px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: #35c5a0;
+}
+
+.cart-button {
+  background: #35c5a0;
+  border: 0;
+  padding: 11px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.hero {
+  background: #172b50;
+  color: white;
+  padding: 65px 7%;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 38px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  color: #d1d9e8;
+  margin-bottom: 25px;
+}
+
+.hero a {
+  display: inline-block;
+  background: #35c5a0;
+  color: #102039;
+  text-decoration: none;
+  padding: 13px 25px;
+  border-radius: 7px;
+  font-weight: bold;
+}
+
+.section {
+  padding: 45px 7%;
+}
+
+.section h2 {
+  margin-bottom: 25px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 22px;
+}
+
+.product {
+  background: white;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 3px 14px #0000000d;
+}
+
+.product img {
+  width: 100%;
+  height: 175px;
+  object-fit: contain;
+  background: #f1f3f8;
+  border-radius: 8px;
+}
+
+.product h3 {
+  margin: 15px 0 8px;
+}
+
+.price {
+  color: #087d62;
+  font-size: 19px;
+  font-weight: bold;
+  margin-bottom: 13px;
+}
+
+.product button {
+  background: #172b50;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.product button:hover {
+  background: #35a98d;
+}
+
+.cart {
+  background: white;
+  padding: 25px 7%;
+  margin: 20px 7%;
+  border-radius: 12px;
+  display: none;
+}
+
+.cart h2 {
+  margin-bottom: 15px;
+}
+
+.cart-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart button {
+  cursor: pointer;
+  padding: 7px 12px;
+  margin: 5px;
+}
+
+.checkout {
+  background: #168b6c;
+  color: white;
+  border: none;
+  padding: 13px 20px;
+  border-radius: 7px;
+  margin-top: 15px;
+}
+
+footer {
+  background: #101c35;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+  line-height: 2;
+}
+
+@media(max-width:600px) {
+  .hero h1 {
+    font-size: 29px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">PHONE <span>POINT</span></div>
+  <button class="cart-button" onclick="toggleCart()">
+    🛒 Cart (<span id="count">0</span>)
+  </button>
+</header>
+
+<section class="hero">
+  <h1>Your Trusted Mobile Store</h1>
+  <p>Explore Smartphones, Accessories & Latest Technology.</p>
+  <a href="#products">Explore Products</a>
+</section>
+
+<section class="section" id="products">
+  <h2>Our Products</h2>
+
+  <div class="products">
+
+    <div class="product">
+      <img src="https://placehold.co/300x200?text=Samsung+Phone" alt="Samsung phone">
+      <h3>Samsung Galaxy</h3>
+      <p class="price">Rs. 45,000</p>
+      <button onclick="addToCart('Samsung Galaxy',45000)">
+        Add to Cart
+      </button>
+    </div>
+
+    <div class="product">
+      <img src="https://placehold.co/300x200?text=iPhone" alt="iPhone">
+      <h3>Apple iPhone</h3>
+      <p class="price">Rs. 120,000</p>
+      <button onclick="addToCart('Apple iPhone',120000)">
+        Add to Cart
+      </button>
+    </div>
+
+    <div class="product">
+      <img src="https://placehold.co/300x200?text=Infinix" alt="Infinix phone">
+      <h3>Infinix Smartphone</h3>
+      <p class="price">Rs. 35,000</p>
+      <button onclick="addToCart('Infinix Smartphone',35000)">
+        Add to Cart
+      </button>
+    </div>
+
+    <div class="product">
+      <img src="https://placehold.co/300x200?text=Headphones" alt="Headphones">
+      <h3>Wireless Headphones</h3>
+      <p class="price">Rs. 3,500</p>
+      <button onclick="addToCart('Wireless Headphones',3500)">
+        Add to Cart
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<section class="cart" id="cart">
+  <h2>Your Shopping Cart</h2>
+  <div id="cartItems"></div>
+  <h3 id="total">Total: Rs. 0</h3>
+  <button class="checkout" onclick="checkout()">
+    Order on WhatsApp
+  </button>
+</section>
+
+<footer>
+  <h2>PHONE POINT</h2>
+  <p>Lyric Mobile Mall, Saddar, Karachi</p>
+  <p>Phone: +92 311 2010099</p>
+  <p>Demo Website | All Rights Reserved</p>
+</footer>
+
+<script>
+let cart = [];
+
+function addToCart(name, price) {
+  cart.push({name, price});
+  updateCart();
+  alert(name + " added to cart!");
+}
+
+function updateCart() {
+  document.getElementById("count").innerText = cart.length;
+
+  let items = document.getElementById("cartItems");
+  let total = 0;
+
+  items.innerHTML = "";
+
+  cart.forEach((item, index) => {
+    total += item.price;
+
+    items.innerHTML += `
+      <div class="cart-item">
+        ${item.name} - Rs. ${item.price.toLocaleString()}
+        <button onclick="removeItem(${index})">Remove</button>
+      </div>
+    `;
+  });
+
+  document.getElementById("total").innerText =
+    "Total: Rs. " + total.toLocaleString();
+}
+
+function removeItem(index) {
+  cart.splice(index, 1);
+  updateCart();
+}
+
+function toggleCart() {
+  let section = document.getElementById("cart");
+
+  section.style.display =
+    section.style.display === "block" ? "none" : "block";
+
+  updateCart();
+}
+
+function checkout() {
+  if (cart.length === 0) {
+    alert("Your cart is empty!");
+    return;
+  }
+
+  let message = "Assalam-o-Alaikum PHONE POINT! My order:\n\n";
+  let total = 0;
+
+  cart.forEach(item => {
+    message += item.name + " - Rs. " +
+      item.price.toLocaleString() + "\n";
+    total += item.price;
+  });
+
+  message += "\nTotal: Rs. " + total.toLocaleString();
+
+  // Replace with the shop's verified WhatsApp number
+  let phone = "923XXXXXXXXX";
+
+  window.open(
+    "https://wa.me/" + phone + "?text=" +
+    encodeURIComponent(message),
+    "_blank"
+  );
+}
+</script>
+
+</body>
+</html>
