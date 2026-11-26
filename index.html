@@ -347,8 +347,10 @@ function money(n){
   return "Rs. " + n.toLocaleString("en-PK");
 }
 
+
 function renderProducts(){
   const query = document.getElementById("search").value.toLowerCase();
+
   const filtered = products.filter(p =>
     (category === "All" || p.category === category) &&
     p.name.toLowerCase().includes(query)
@@ -362,15 +364,18 @@ function renderProducts(){
           <div class="tag">${p.category.toUpperCase()}</div>
           <h3>${p.name}</h3>
           <div class="price">${money(p.price)}</div>
+
           <button class="gold-btn" onclick="addToCart(${p.id})">
             Add to Cart
+          </button>
+
+          <button class="details-button" onclick="showDetails(${p.id})">
+            View Details
           </button>
         </div>
       </div>
     `).join("") || "<p>No products found.</p>";
-}
-
- 
+} 
 
 function showDetails(id){
   const p = products.find(item => item.id === id);
