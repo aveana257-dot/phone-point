@@ -137,6 +137,71 @@ footer strong{color:var(--gold)}
   .hero{padding:65px 7%}
   .section{padding:40px 5%}
 }
+
+/* V3 PRODUCT DETAILS */
+.details-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,.92);
+  overflow-y: auto;
+  padding: 30px 15px;
+}
+
+.details-content {
+  max-width: 750px;
+  margin: 30px auto;
+  padding: 25px;
+  background: #151515;
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+}
+
+.details-content img {
+  width: 100%;
+  height: 280px;
+  object-fit: contain;
+  background: white;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.details-content h2 {
+  color: var(--gold);
+  margin: 18px 0;
+}
+
+.details-content p {
+  color: #ccc;
+  line-height: 2;
+}
+
+.details-content .gold-btn {
+  margin-top: 15px;
+}
+
+.details-close {
+  float: right;
+  background: #333;
+  color: white;
+  border: 1px solid #666;
+  padding: 8px 14px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.details-button {
+  width: 100%;
+  margin-top: 9px;
+  padding: 11px;
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 </style>
 </head>
 
@@ -184,6 +249,29 @@ footer strong{color:var(--gold)}
   </div>
 
   <div class="products" id="productsGrid"></div>
+ 
+<div class="details-modal" id="detailsModal">
+  <div class="details-content">
+    <button class="details-close" onclick="closeDetails()">✕ Close</button>
+    <div style="clear:both"></div>
+
+    <img id="detailsImage" src="" alt="Product">
+
+    <h2 id="detailsName"></h2>
+    <div class="price" id="detailsPrice"></div>
+    <p id="detailsCategory"></p>
+    <p id="detailsSpecs"></p>
+
+    <<button class="gold-btn" onclick="addToCart(${p.id})">
+  Add to Cart
+</button>
+
+<button class="details-button" onclick="showDetails(${p.id})">
+  View Details
+</button>
+  </div>
+</div>
+
 </section>
 
 <div class="cart-box" id="cart">
@@ -282,6 +370,31 @@ function renderProducts(){
     `).join("") || "<p>No products found.</p>";
 }
 
+ 
+function showDetails(id){
+  const p = products.find(item => item.id === id);
+  if(!p) return;
+
+  document.getElementById("detailsImage").src = p.image;
+  document.getElementById("detailsName").innerText = p.name;
+  document.getElementById("detailsPrice").innerText = money(p.price);
+  document.getElementById("detailsCategory").innerText =
+    "Category: " + p.category;
+
+  document.getElementById("detailsSpecs").innerText =
+    "Specifications: Demo information. Actual RAM, storage, processor and display details will be updated after shop confirmation.";
+
+  document.getElementById("detailsCartButton").onclick = function(){
+    addToCart(id);
+  };
+
+  document.getElementById("detailsModal").style.display = "block";
+}
+
+function closeDetails(){
+  document.getElementById("detailsModal").style.display = "none";
+}
+
 function setCategory(value,button){
   category = value;
   document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
@@ -374,3 +487,4 @@ updateCart();
 
 </body>
 </html>
+
