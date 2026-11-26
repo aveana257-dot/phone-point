@@ -371,6 +371,7 @@ function renderProducts(){
 }
 
  
+
 function showDetails(id){
   const p = products.find(item => item.id === id);
   if(!p) return;
@@ -378,11 +379,12 @@ function showDetails(id){
   document.getElementById("detailsImage").src = p.image;
   document.getElementById("detailsName").innerText = p.name;
   document.getElementById("detailsPrice").innerText = money(p.price);
+
   document.getElementById("detailsCategory").innerText =
     "Category: " + p.category;
 
   document.getElementById("detailsSpecs").innerText =
-    "Specifications: Demo information. Actual RAM, storage, processor and display details will be updated after shop confirmation.";
+    "Demo specifications: Actual product details will be updated after shop confirmation.";
 
   document.getElementById("detailsCartButton").onclick = function(){
     addToCart(id);
@@ -392,6 +394,9 @@ function showDetails(id){
 }
 
 function closeDetails(){
+  document.getElementById("detailsModal").style.display = "none";
+}
+
   document.getElementById("detailsModal").style.display = "none";
 }
 
